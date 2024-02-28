@@ -1,11 +1,24 @@
 import type { MDXComponents } from 'mdx/types';
 import { getMDXComponent } from 'next-contentlayer/hooks';
+import Link from 'next/link';
 import * as examples from '~/examples';
 import { theme } from '~/src';
 import { CodeDemo, type CodeData } from './code-demo';
 import { CodeHighlight } from './code-highlight';
 
 const components: MDXComponents = {
+  a: ({ ref, href = '', ...props }) => {
+    const isLocal = href.startsWith('/');
+
+    return (
+      <Link
+        {...props}
+        href={href}
+        ref={ref as React.Ref<HTMLAnchorElement>}
+        {...(!isLocal && { target: '_blank', rel: 'noreferrer' })}
+      />
+    );
+  },
   // TODO: revisit
   h2: (props) => (
     <h2 className="group relative z-20 scroll-mt-20 text-2xl font-bold text-gray-900" {...props}>
@@ -38,7 +51,7 @@ const components: MDXComponents = {
       const properties = path.split('.');
       const key = properties.shift() as keyof typeof obj;
       if (!(key in obj)) return;
-      return pick(obj[key], properties.join('.'));
+      return pick(obj[key] as T, properties.join('.'));
     }
 
     const codeData = pick(examples, name);

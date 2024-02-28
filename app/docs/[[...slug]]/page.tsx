@@ -29,6 +29,18 @@ export function generateMetadata({ params }: Props): Metadata {
   return {
     title: doc.title,
     description: doc.description,
+    openGraph: {
+      type: 'article',
+      title: doc.title,
+      description: doc.description,
+      images: 'https://flowbite.s3.amazonaws.com/github/flowbite-react.png',
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: doc.title,
+      description: doc.description,
+      images: ['https://flowbite.s3.amazonaws.com/github/flowbite-react.png'],
+    },
   };
 }
 
@@ -226,7 +238,7 @@ function DocFooter() {
           <Footer.Copyright
             by="All Rights Reserved. Flowbite™ is a registered trademark."
             href="/"
-            year={2023}
+            year={new Date().getFullYear()}
             className="text-base"
           />
         </div>

@@ -48,9 +48,11 @@ function DocsNavbar({ isCollapsed, setCollapsed }: DocsLayoutState) {
     <Navbar
       fluid
       theme={{
-        base: 'sticky top-0 z-[60] bg-white dark:bg-gray-800 text-gray-500 dark:text-gray-400 border-b border-gray-200 dark:border-gray-700 flex items-center justify-between w-full mx-auto py-2.5 px-4',
-        inner: {
-          base: 'mx-auto flex flex-wrap justify-between items-center w-full',
+        root: {
+          base: 'sticky top-0 z-[60] bg-white dark:bg-gray-800 text-gray-500 dark:text-gray-400 border-b border-gray-200 dark:border-gray-700 flex items-center justify-between w-full mx-auto py-2.5 px-4',
+          inner: {
+            base: 'mx-auto flex flex-wrap justify-between items-center w-full',
+          },
         },
       }}
     >
@@ -206,7 +208,7 @@ function NewBadge({ children }: PropsWithChildren) {
   return (
     <span className="flex items-center gap-2">
       {children}
-      <Badge color="cyan" className="px-2">
+      <Badge color="cyan" className="h-4 px-1.5">
         New
       </Badge>
     </span>

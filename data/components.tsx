@@ -210,13 +210,13 @@ export const COMPONENTS_DATA: Component[] = [
   //   link: `/docs/forms/input-field`,
   //   classes: 'w-40'
   // },
-  // {
-  //   name: 'File Input',
-  //   image: '/images/components/file-input.svg',
-  //   imageDark: '/images/components/file-input-dark.svg',
-  //   link: `/docs/forms/file-input`,
-  //   classes: 'w-48'
-  // },
+  {
+    name: 'File Input',
+    image: '/images/components/file-input.svg',
+    imageDark: '/images/components/file-input-dark.svg',
+    link: `/docs/forms/file-input`,
+    classes: 'w-48',
+  },
   // {
   //   name: 'Search Input',
   //   image: '/images/components/search-input.svg',
@@ -343,13 +343,13 @@ export const COMPONENTS_DATA: Component[] = [
   //   link: `/docs/typography/images`,
   //   classes: 'w-64'
   // },
-  // {
-  //   name: 'List',
-  //   image: '/images/components/list.svg',
-  //   imageDark: '/images/components/list-dark.svg',
-  //   link: `/docs/typography/lists`,
-  //   classes: 'w-64'
-  // },
+  {
+    name: 'List',
+    image: '/images/components/list.svg',
+    imageDark: '/images/components/list-dark.svg',
+    link: `/docs/typography/list`,
+    classes: 'w-64',
+  },
   // {
   //   name: 'Link',
   //   image: '/images/components/link.svg',

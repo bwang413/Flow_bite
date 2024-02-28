@@ -1,6 +1,6 @@
 'use client';
 
-import type { ComponentProps, FC, PropsWithChildren, ReactElement, ReactNode } from 'react';
+import type { ComponentProps, FC, ReactElement, ReactNode } from 'react';
 import { Children, cloneElement, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { HiOutlineChevronLeft, HiOutlineChevronRight } from 'react-icons/hi';
 import ScrollContainer from 'react-indiana-drag-scroll';
@@ -33,7 +33,7 @@ export interface FlowbiteCarouselIndicatorsTheme {
 
 export interface FlowbiteCarouselItemTheme {
   base: string;
-  wrapper: string;
+  wrapper: FlowbiteBoolean;
 }
 
 export interface FlowbiteCarouselControlTheme {
@@ -46,10 +46,11 @@ export interface FlowbiteCarouselScrollContainer {
   snap: string;
 }
 
-export interface CarouselProps extends PropsWithChildren<ComponentProps<'div'>> {
+export interface CarouselProps extends ComponentProps<'div'> {
   indicators?: boolean;
   leftControl?: ReactNode;
   rightControl?: ReactNode;
+  draggable?: boolean;
   slide?: boolean;
   slideInterval?: number;
   theme?: DeepPartial<FlowbiteCarouselTheme>;
@@ -57,7 +58,7 @@ export interface CarouselProps extends PropsWithChildren<ComponentProps<'div'>> 
   pauseOnHover?: boolean;
 }
 
-export interface DefaultLeftRightControlProps extends PropsWithChildren<ComponentProps<'div'>> {
+export interface DefaultLeftRightControlProps extends ComponentProps<'div'> {
   theme?: DeepPartial<FlowbiteCarouselTheme>;
 }
 
@@ -67,6 +68,7 @@ export const Carousel: FC<CarouselProps> = ({
   leftControl,
   rightControl,
   slide = true,
+  draggable = true,
   slideInterval,
   className,
   theme: customTheme = {},
@@ -148,13 +150,14 @@ export const Carousel: FC<CarouselProps> = ({
         draggingClassName="cursor-grab"
         innerRef={carouselContainer}
         onEndScroll={handleDragging(false)}
-        onStartScroll={handleDragging(true)}
+        onStartScroll={handleDragging(draggable)}
         vertical={false}
+        horizontal={draggable}
       >
         {items?.map((item, index) => (
           <div
             key={index}
-            className={theme.item.wrapper}
+            className={theme.item.wrapper[draggable ? 'on' : 'off']}
             data-active={activeItem === index}
             data-testid="carousel-item"
           >
