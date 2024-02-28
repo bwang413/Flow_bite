@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import type { ComponentProps, FC, PropsWithChildren } from 'react';
+import type { ComponentProps, FC } from 'react';
 import { COMPONENTS_DATA } from '~/data/components';
 import { Button } from '~/src';
 
@@ -21,11 +21,11 @@ export const ComponentsSection: FC = () => {
         </div>
         <div className="grid grid-cols-1 items-center justify-center gap-4 sm:grid-cols-2 sm:gap-8 xl:grid-cols-3">
           {COMPONENTS_DATA.map((component) => (
-            <ComponentCard key={component.id} {...component} />
+            <ComponentCard key={component.name} {...component} />
           ))}
         </div>
         <div className="mb-4 flex w-full justify-center text-center">
-          <Button href="/docs/components/accordion" color="light">
+          <Button as={Link} href="/docs/components/accordion" color="light">
             View all components
           </Button>
         </div>
@@ -34,7 +34,7 @@ export const ComponentsSection: FC = () => {
   );
 };
 
-interface ComponentCardProps extends PropsWithChildren, ComponentProps<'div'> {
+interface ComponentCardProps extends ComponentProps<'div'> {
   link: string;
   name?: string;
   image?: string;

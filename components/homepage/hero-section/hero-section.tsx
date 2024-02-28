@@ -1,7 +1,9 @@
+import Image from 'next/image';
 import type { FC } from 'react';
 import { HiOutlineArrowRight } from 'react-icons/hi';
 import { Button } from '~/src';
 import { CopyPackageInput } from './copy-package-input';
+import Link from 'next/link';
 
 export const HeroSection: FC = () => {
   return (
@@ -22,7 +24,12 @@ export const HeroSection: FC = () => {
                 <CopyPackageInput value="npm i flowbite-react" />
                 <div className="justify-center sm:flex sm:justify-start">
                   <div className="mx-0 flex flex-row items-center gap-4 sm:gap-6">
-                    <Button href="/docs/getting-started/introduction" size="lg" className="w-full whitespace-nowrap">
+                    <Button
+                      as={Link}
+                      size="lg"
+                      href="/docs/getting-started/introduction"
+                      className="w-full whitespace-nowrap"
+                    >
                       Get started <HiOutlineArrowRight className="ml-2 mt-1 h-4 w-4" />
                     </Button>
                   </div>
@@ -32,10 +39,16 @@ export const HeroSection: FC = () => {
           </div>
           <div className="hidden items-center p-0 md:flex">
             <div className="relative dark:hidden">
-              <img className="h-auto max-w-full" src="/images/gallery.png" alt="Header" />
+              <Image className="h-auto max-w-full" src="/images/gallery.png" alt="Header" width={620} height={416} />
             </div>
             <div className="relative hidden dark:block">
-              <img className="h-auto max-w-full" src="/images/gallery-dark.png" alt="Header" />
+              <Image
+                className="h-auto max-w-full"
+                src="/images/gallery-dark.png"
+                alt="Header"
+                width={620}
+                height={416}
+              />
             </div>
           </div>
         </div>
