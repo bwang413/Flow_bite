@@ -1,3 +1,4 @@
+export * from './List';
 export { List } from './List';
 export type { FlowbiteListRootTheme, FlowbiteListTheme, ListProps } from './List';
 export { ListItem } from './ListItem';
