@@ -1,4 +1,4 @@
-import type { ComponentProps, FC, PropsWithChildren } from 'react';
+import type { ComponentProps, FC } from 'react';
 import { useId } from 'react';
 import { twMerge } from 'tailwind-merge';
 import { mergeDeep } from '../../helpers/merge-deep';
@@ -15,7 +15,10 @@ export interface FlowbiteProgressTheme {
 }
 
 export interface ProgressColor
-  extends Pick<FlowbiteColors, 'dark' | 'blue' | 'red' | 'green' | 'yellow' | 'indigo' | 'purple'> {
+  extends Pick<
+    FlowbiteColors,
+    'dark' | 'blue' | 'red' | 'green' | 'yellow' | 'indigo' | 'purple' | 'cyan' | 'gray' | 'lime' | 'pink' | 'teal'
+  > {
   [key: string]: string;
 }
 
@@ -23,7 +26,7 @@ export interface ProgressSizes extends Pick<FlowbiteSizes, 'sm' | 'md' | 'lg' | 
   [key: string]: string;
 }
 
-export interface ProgressProps extends PropsWithChildren, ComponentProps<'div'> {
+export interface ProgressProps extends ComponentProps<'div'> {
   labelProgress?: boolean;
   labelText?: boolean;
   progress: number;
@@ -36,7 +39,7 @@ export interface ProgressProps extends PropsWithChildren, ComponentProps<'div'> 
 
 export const Progress: FC<ProgressProps> = ({
   className,
-  color = 'blue',
+  color = 'cyan',
   labelProgress = false,
   labelText = false,
   progress,
