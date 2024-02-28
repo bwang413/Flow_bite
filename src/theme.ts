@@ -18,8 +18,9 @@ import { footerTheme } from './components/Footer/theme';
 import { helperTextTheme } from './components/HelperText/theme';
 import { kbdTheme } from './components/Kbd/theme';
 import { labelTheme } from './components/Label/theme';
-import { listGroupTheme } from './components/ListGroup/theme';
 import { listTheme } from './components/List/theme';
+import { listGroupTheme } from './components/ListGroup/theme';
+import { ListTheme } from './components/List/theme';
 import { modalTheme } from './components/Modal/theme';
 import { navbarTheme } from './components/Navbar/theme';
 import { paginationTheme } from './components/Pagination/theme';
@@ -38,6 +39,7 @@ import { timelineTheme } from './components/Timeline/theme';
 import { toastTheme } from './components/Toast/theme';
 import { toggleSwitchTheme } from './components/ToggleSwitch/theme';
 import { tooltipTheme } from './components/Tooltip/theme';
+import { popoverTheme } from './components/Popover/theme';
 
 export const theme: FlowbiteTheme = {
   accordion: accordionTheme,
@@ -61,6 +63,7 @@ export const theme: FlowbiteTheme = {
   kbd: kbdTheme,
   label: labelTheme,
   listGroup: listGroupTheme,
+  list: ListTheme,
   list: listTheme,
   modal: modalTheme,
   navbar: navbarTheme,
@@ -81,4 +84,5 @@ export const theme: FlowbiteTheme = {
   timeline: timelineTheme,
   toast: toastTheme,
   tooltip: tooltipTheme,
+  popover: popoverTheme,
 };
