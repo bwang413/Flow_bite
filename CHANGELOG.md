@@ -2,6 +2,58 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.7.2](https://github.com/themesberg/flowbite-react/compare/v0.7.1...v0.7.2) (2023-12-12)
+
+
+### Bug Fixes
+
+* absolute to relative import ([#1183](https://github.com/themesberg/flowbite-react/issues/1183)) ([3f0bebb](https://github.com/themesberg/flowbite-react/commit/3f0bebbdc863552a5d31c080c1d129a450870cc0))
+
+### [0.7.1](https://github.com/themesberg/flowbite-react/compare/v0.7.0...v0.7.1) (2023-12-12)
+
+
+### ⚠ BREAKING CHANGES
+
+* **datepicker:** As the WeekStart enum changed order to be aligned with Javascript Date object, now
+you have to change your weekStart attribute to be -1, so for Monday you should put 1, instead of 2.
+But it wasn't working before as the values were incorrectly rendered in the first place.
+
+### Features
+
+* **list component:** develop new horizontal state of list component ([#1178](https://github.com/themesberg/flowbite-react/issues/1178)) ([1fbe6ca](https://github.com/themesberg/flowbite-react/commit/1fbe6ca69346b090f9007e0ae904213977ad6d6e))
+* **list.stories.tsx:** add horizontal stories ([#1180](https://github.com/themesberg/flowbite-react/issues/1180)) ([7db683d](https://github.com/themesberg/flowbite-react/commit/7db683d939d08a465df6fbb1dc7cbfc5b7396bf4))
+
+
+### Bug Fixes
+
+* add empty space to `<Checkbox>` ring in dark mode ([#1160](https://github.com/themesberg/flowbite-react/issues/1160)) ([d0ccfde](https://github.com/themesberg/flowbite-react/commit/d0ccfde319642a9c62fcff8c04470e744d7ab7a7))
+* **component:** fix `<DarkThemeToggle>` console warning ([#1172](https://github.com/themesberg/flowbite-react/issues/1172)) ([bdd7cdf](https://github.com/themesberg/flowbite-react/commit/bdd7cdfadd33ce39408cf50cbc42b199e7469457))
+* **datepicker:** fix the inconsistent weekday labels ([#1173](https://github.com/themesberg/flowbite-react/issues/1173)) ([770ab9d](https://github.com/themesberg/flowbite-react/commit/770ab9db7fde1aca8c68a1c0e196841a3510039f)), closes [#1044](https://github.com/themesberg/flowbite-react/issues/1044)
+* **footer>theme.ts:** adding margin to right in footer links ([#1153](https://github.com/themesberg/flowbite-react/issues/1153)) ([7c1275e](https://github.com/themesberg/flowbite-react/commit/7c1275e255f8dcbefcd73a7acec21b17e043273f)), closes [#1085](https://github.com/themesberg/flowbite-react/issues/1085)
+* **pagination:** updating lastPage variable correctly for table layout ([#1151](https://github.com/themesberg/flowbite-react/issues/1151)) ([2259bf5](https://github.com/themesberg/flowbite-react/commit/2259bf55c720495ae72bb055f2fca8c3633e006c)), closes [#1150](https://github.com/themesberg/flowbite-react/issues/1150)
+
+## [0.7.0](https://github.com/themesberg/flowbite-react/compare/v0.6.4...v0.7.0) (2023-11-24)
+
+
+### Features
+
+* `ThemeModeScript` - avoid page flicker on reload on SSR application (NextJS, Remix) ([#1056](https://github.com/themesberg/flowbite-react/issues/1056)) ([4f0399b](https://github.com/themesberg/flowbite-react/commit/4f0399b50b23ec24ded67681f3290a8fbf653920))
+* **progress:** add missing colors for Progress component ([#1129](https://github.com/themesberg/flowbite-react/issues/1129)) ([f8853af](https://github.com/themesberg/flowbite-react/commit/f8853afb1cf404a0a07e446890bea92aa9ce22fb))
+
+
+### Bug Fixes
+
+* **button/theme.ts:** add the missing dark modifier for Button bg color ([#1047](https://github.com/themesberg/flowbite-react/issues/1047)) ([0050aef](https://github.com/themesberg/flowbite-react/commit/0050aef25e93bd38bd517b5da54344099f7eb4bf)), closes [#1045](https://github.com/themesberg/flowbite-react/issues/1045)
+* docs dropdown - incorrect code preview ([#1059](https://github.com/themesberg/flowbite-react/issues/1059)) ([624932a](https://github.com/themesberg/flowbite-react/commit/624932a8ca34c74dba068415c6ccdbd695c77100))
+* docs forms toggle switch - incorrect code preview ([#1061](https://github.com/themesberg/flowbite-react/issues/1061)) ([5733b12](https://github.com/themesberg/flowbite-react/commit/5733b12796ae75cfd9ae29200c2a710e2405d199))
+* docs navbar - incorrect code preview ([#1062](https://github.com/themesberg/flowbite-react/issues/1062)) ([8c5bd0b](https://github.com/themesberg/flowbite-react/commit/8c5bd0bdceb466a4ac8b36b96e6a91b9c1fce83a))
+* docs/getting started/contributing - invalid "bug tracker" url ([#1073](https://github.com/themesberg/flowbite-react/issues/1073)) ([c357c4f](https://github.com/themesberg/flowbite-react/commit/c357c4f0d9d83c8f4b728f24a026eaed19c97a4a))
+* dropdown theme - granular control ([#1066](https://github.com/themesberg/flowbite-react/issues/1066)) ([cac6148](https://github.com/themesberg/flowbite-react/commit/cac614889e27ee95313dbe5a8af807eca6976649))
+* homepage dark mode `Floating Label` - missing svg ([#1074](https://github.com/themesberg/flowbite-react/issues/1074)) ([df71241](https://github.com/themesberg/flowbite-react/commit/df71241cc26fca900014fd163370bb680bc4e3d6))
+* layout overflow ([#1054](https://github.com/themesberg/flowbite-react/issues/1054)) ([7c5f136](https://github.com/themesberg/flowbite-react/commit/7c5f136035f20050fb14f97627b65fb86046873a))
+* listItem disabled property ([#1126](https://github.com/themesberg/flowbite-react/issues/1126)) ([0f274d6](https://github.com/themesberg/flowbite-react/commit/0f274d6318b7693ae79bb8ced2483e82085c9ed4))
+* remove alias import ([#1058](https://github.com/themesberg/flowbite-react/issues/1058)) ([bb60b18](https://github.com/themesberg/flowbite-react/commit/bb60b183b60e63f38eab7c711c0c775cd0739c55))
+
 ### [0.6.4](https://github.com/themesberg/flowbite-react/compare/v0.6.3...v0.6.4) (2023-10-03)
 
 
