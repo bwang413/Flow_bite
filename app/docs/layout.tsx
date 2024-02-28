@@ -125,6 +125,212 @@ function DocsSidebar({ isCollapsed, setCollapsed }: DocsLayoutState) {
           }}
         >
           <Sidebar.Items className="grid grid-cols-1 gap-2">
+            <Accordion collapseAll={!pathname.includes('/getting-started/')} flush className="border-none">
+              <Accordion.Panel>
+                <Accordion.Title
+                  theme={{
+                    open: {
+                      on: 'mb-2 text-primary-700 hover:text-primary-700 dark:text-primary-500 dark:hover:text-primary-500',
+                      off: 'mb-1 text-gray-900 dark:text-white hover:text-primary-700 dark:hover:text-primary-500',
+                    },
+                  }}
+                  className={twMerge(
+                    'flex w-full items-center justify-between bg-transparent p-0 text-sm font-semibold uppercase tracking-wide',
+                    pathname.includes('/getting-started/') &&
+                      'text-primary-700 hover:text-primary-700 dark:text-primary-500 dark:hover:text-primary-500',
+                  )}
+                >
+                  Getting started
+                </Accordion.Title>
+                <Accordion.Content className="mb-2 border-none p-0">
+                  <Sidebar.ItemGroup className="border-none">
+                    <SidebarLink href="/docs/getting-started/introduction">Introduction</SidebarLink>
+                    <SidebarLink href="/docs/getting-started/quickstart">Quickstart</SidebarLink>
+                    <SidebarLink href="/docs/getting-started/nextjs">
+                      <span className="flex items-center gap-2">
+                        Next.js{' '}
+                        <Badge color="cyan" className="px-2">
+                          New
+                        </Badge>
+                      </span>
+                    </SidebarLink>
+                    <SidebarLink href="/docs/getting-started/typescript">TypeScript</SidebarLink>
+                    <SidebarLink href="/docs/getting-started/license">License</SidebarLink>
+                    <SidebarLink href="https://github.com/themesberg/flowbite-react/releases">Changelog</SidebarLink>
+                    <SidebarLink href="/docs/getting-started/contributing">Contributing</SidebarLink>
+                  </Sidebar.ItemGroup>
+                </Accordion.Content>
+              </Accordion.Panel>
+            </Accordion>
+            <Accordion collapseAll={!pathname.includes('/customize/')} flush className="border-none">
+              <Accordion.Panel>
+                <Accordion.Title
+                  theme={{
+                    open: {
+                      on: 'mb-2 text-primary-700 hover:text-primary-700 dark:text-primary-500 dark:hover:text-primary-500',
+                      off: 'mb-1 text-gray-900 dark:text-white hover:text-primary-700 dark:hover:text-primary-500',
+                    },
+                  }}
+                  className={twMerge(
+                    'flex w-full items-center justify-between bg-transparent p-0 text-sm font-semibold uppercase tracking-wide',
+                    pathname.includes('/customize/') &&
+                      'text-primary-700 hover:text-primary-700 dark:text-primary-500 dark:hover:text-primary-500',
+                  )}
+                >
+                  Customize
+                </Accordion.Title>
+                <Accordion.Content className="mb-2 space-y-0.5 border-none p-0">
+                  <Sidebar.ItemGroup className="border-none">
+                    <SidebarLink href="/docs/customize/theme">Theme</SidebarLink>
+                    <SidebarLink href="/docs/customize/dark-mode">Dark mode</SidebarLink>
+                  </Sidebar.ItemGroup>
+                </Accordion.Content>
+              </Accordion.Panel>
+            </Accordion>
+            <Accordion collapseAll={!pathname.includes('/components/')} flush className="border-none">
+              <Accordion.Panel className="focus:outline-none focus:ring-0">
+                <Accordion.Title
+                  theme={{
+                    open: {
+                      on: 'mb-2 text-primary-700 hover:text-primary-700 dark:text-primary-500 dark:hover:text-primary-500',
+                      off: 'mb-1 text-gray-900 dark:text-white hover:text-primary-700 dark:hover:text-primary-500',
+                    },
+                  }}
+                  className={twMerge(
+                    'flex w-full items-center justify-between bg-transparent p-0 text-sm font-semibold uppercase tracking-wide',
+                    pathname.includes('/components/') &&
+                      'text-primary-700 hover:text-primary-700 dark:text-primary-500 dark:hover:text-primary-500',
+                  )}
+                >
+                  Components
+                </Accordion.Title>
+                <Accordion.Content className="mb-2 border-none p-0">
+                  <Sidebar.ItemGroup className="border-none">
+                    <SidebarLink href="/docs/components/accordion">Accordion</SidebarLink>
+                    <SidebarLink href="/docs/components/alert">Alert</SidebarLink>
+                    <SidebarLink href="/docs/components/avatar">Avatar</SidebarLink>
+                    <SidebarLink href="/docs/components/badge">Badge</SidebarLink>
+                    <SidebarLink href="/docs/components/banner">
+                      <span className="flex items-center gap-2">
+                        Banner{' '}
+                        <Badge color="cyan" className="px-2">
+                          New
+                        </Badge>
+                      </span>
+                    </SidebarLink>
+                    <SidebarLink href="/docs/components/breadcrumb">Breadcrumb</SidebarLink>
+                    <SidebarLink href="/docs/components/button">Button</SidebarLink>
+                    <SidebarLink href="/docs/components/button-group">Button group</SidebarLink>
+                    <SidebarLink href="/docs/components/card">Card</SidebarLink>
+                    <SidebarLink href="/docs/components/carousel">Carousel</SidebarLink>
+                    <SidebarLink href="/docs/components/datepicker">
+                      <span className="flex items-center gap-2">
+                        Datepicker{' '}
+                        <Badge color="cyan" className="px-2">
+                          New
+                        </Badge>
+                      </span>
+                    </SidebarLink>
+                    <SidebarLink href="/docs/components/dropdown">Dropdown</SidebarLink>
+                    <SidebarLink href="/docs/components/footer">Footer</SidebarLink>
+                    <SidebarLink href="/docs/components/forms">Forms</SidebarLink>
+                    <SidebarLink href="/docs/components/kbd">
+                      <span className="flex items-center gap-2">
+                        KBD{' '}
+                        <Badge color="cyan" className="px-2">
+                          New
+                        </Badge>
+                      </span>
+                    </SidebarLink>
+                    <SidebarLink href="/docs/components/list-group">List group</SidebarLink>
+                    <SidebarLink href="/docs/components/modal">Modal</SidebarLink>
+                    <SidebarLink href="/docs/components/navbar">Navbar</SidebarLink>
+                    <SidebarLink href="/docs/components/pagination">Pagination</SidebarLink>
+                    <SidebarLink href="/docs/components/progress">Progress bar</SidebarLink>
+                    <SidebarLink href="/docs/components/rating">Rating</SidebarLink>
+                    <SidebarLink href="/docs/components/sidebar">Sidebar</SidebarLink>
+                    <SidebarLink href="/docs/components/spinner">Spinner</SidebarLink>
+                    <SidebarLink href="/docs/components/table">Table</SidebarLink>
+                    <SidebarLink href="/docs/components/tabs">Tabs</SidebarLink>
+                    <SidebarLink href="/docs/components/timeline">Timeline</SidebarLink>
+                    <SidebarLink href="/docs/components/toast">Toast</SidebarLink>
+                    <SidebarLink href="/docs/components/tooltip">Tooltip</SidebarLink>
+                  </Sidebar.ItemGroup>
+                </Accordion.Content>
+              </Accordion.Panel>
+            </Accordion>
+            <Accordion collapseAll={!pathname.includes('/forms/')} flush className="border-none">
+              <Accordion.Panel>
+                <Accordion.Title
+                  theme={{
+                    open: {
+                      on: 'mb-2 text-primary-700 hover:text-primary-700 dark:text-primary-500 dark:hover:text-primary-500',
+                      off: 'mb-1 text-gray-900 dark:text-white hover:text-primary-700 dark:hover:text-primary-500',
+                    },
+                  }}
+                  className={twMerge(
+                    'flex w-full items-center justify-between bg-transparent p-0 text-sm font-semibold uppercase tracking-wide',
+                    pathname.includes('/forms/') &&
+                      'text-primary-700 hover:text-primary-700 dark:text-primary-500 dark:hover:text-primary-500',
+                  )}
+                >
+                  Forms
+                </Accordion.Title>
+                <Accordion.Content className="mb-2 border-none p-0">
+                  <Sidebar.ItemGroup className="border-none">
+                    <SidebarLink href="/docs/forms/floating-label">
+                      <span className="flex items-center gap-2">
+                        Floating Label{' '}
+                        <Badge color="cyan" className="px-2">
+                          New
+                        </Badge>
+                      </span>
+                    </SidebarLink>
+                  </Sidebar.ItemGroup>
+                </Accordion.Content>
+              </Accordion.Panel>
+            </Accordion>
+
+            <Accordion collapseAll={!pathname.includes('/docs/typography/')} flush className="border-none">
+              <Accordion.Panel>
+                <Accordion.Title
+                  theme={{
+                    open: {
+                      on: 'mb-2 text-primary-700 hover:text-primary-700 dark:text-primary-500 dark:hover:text-primary-500',
+                      off: 'mb-1 text-gray-900 dark:text-white hover:text-primary-700 dark:hover:text-primary-500',
+                    },
+                  }}
+                  className={twMerge(
+                    'flex w-full items-center justify-between bg-transparent p-0 text-sm font-semibold uppercase tracking-wide',
+                    pathname.includes('/docs/typography/') &&
+                      'text-primary-700 hover:text-primary-700 dark:text-primary-500 dark:hover:text-primary-500',
+                  )}
+                >
+                  Typography
+                </Accordion.Title>
+                <Accordion.Content className="mb-2 space-y-0.5 border-none p-0">
+                  <Sidebar.ItemGroup className="border-none">
+                    <SidebarLink href="/docs/typography/blockquote">
+                      <span className="flex items-center gap-2">
+                        Blockquote{' '}
+                        <Badge color="cyan" className="px-2">
+                          New
+                        </Badge>
+                      </span>
+                    </SidebarLink>
+                    <SidebarLink href="/docs/typography/list">
+                      <span className="flex items-center gap-2">
+                        List{' '}
+                        <Badge color="cyan" className="px-2">
+                          New
+                        </Badge>
+                      </span>
+                    </SidebarLink>
+                  </Sidebar.ItemGroup>
+                </Accordion.Content>
+              </Accordion.Panel>
+            </Accordion>
+            <span className="h-64">&nbsp;</span>
             {DOCS_SIDEBAR.map((section) => (
               <SidebarSection key={section.title} title={section.title} href={section.href}>
                 {section.items.map((item) => (
@@ -208,7 +414,7 @@ function NewBadge({ children }: PropsWithChildren) {
   return (
     <span className="flex items-center gap-2">
       {children}
-      <Badge color="cyan" className="px-2">
+      <Badge color="cyan" className="h-4 px-1.5">
         New
       </Badge>
     </span>

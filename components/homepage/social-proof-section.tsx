@@ -8,7 +8,9 @@ async function fetchSafe(endpoint: string): Promise<JsonResponseType> {
 
 async function fetchStargazers(): Promise<string> {
   try {
-    const result = await fetchSafe('https://api.github.com/repos/themesberg/flowbite-react');
+    const result = await fetchSafe<{ stargazers_count: string }>(
+      'https://api.github.com/repos/themesberg/flowbite-react',
+    );
 
     return result.stargazers_count;
   } catch (error) {
@@ -18,7 +20,9 @@ async function fetchStargazers(): Promise<string> {
 
 async function fetchNpmDownloads(): Promise<string> {
   try {
-    const result = await fetchSafe('https://api.npmjs.org/downloads/point/2021-01-01:2100-01-01/flowbite-react');
+    const result = await fetchSafe<{ downloads: string }>(
+      'https://api.npmjs.org/downloads/point/2021-01-01:2100-01-01/flowbite-react',
+    );
 
     return result.downloads;
   } catch (error) {
@@ -28,7 +32,7 @@ async function fetchNpmDownloads(): Promise<string> {
 
 async function fetchDiscordMembers(): Promise<string> {
   try {
-    const result = await fetchSafe(
+    const result = await fetchSafe<{ approximate_presence_count: string }>(
       'https://discord.com/api/v9/invites/4eeurUVvTy?with_counts=true&with_expiration=true',
     );
 
