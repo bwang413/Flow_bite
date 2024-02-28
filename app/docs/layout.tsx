@@ -3,14 +3,14 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import type { NextPage } from 'next/types';
-import type { FC, PropsWithChildren } from 'react';
+import type { PropsWithChildren } from 'react';
 import { useEffect, useState } from 'react';
 import { HiMenuAlt1, HiX } from 'react-icons/hi';
 import { twMerge } from 'tailwind-merge';
 import { Banner } from '~/components/banner';
 import { DocSearchInput } from '~/components/docsearch-input';
 import { NavbarIcons, NavbarLinks } from '~/components/navbar';
+import { DOCS_SIDEBAR, type DocsSidebarItem } from '~/data/docs-sidebar';
 import { Accordion, Badge, Navbar, Sidebar } from '~/src';
 import { isClient } from '~/src/helpers/is-client';
 
@@ -21,7 +21,7 @@ interface DocsLayoutState {
   setCollapsed: (collapsed: boolean) => void;
 }
 
-const DocsLayout: NextPage<PropsWithChildren> = ({ children }) => {
+export default function DocsLayout({ children }: PropsWithChildren) {
   const [isCollapsed, setCollapsed] = useState(true);
 
   const state: DocsLayoutState = {
@@ -41,16 +41,18 @@ const DocsLayout: NextPage<PropsWithChildren> = ({ children }) => {
       </div>
     </div>
   );
-};
+}
 
-const DocsNavbar: FC<DocsLayoutState> = ({ isCollapsed, setCollapsed }) => {
+function DocsNavbar({ isCollapsed, setCollapsed }: DocsLayoutState) {
   return (
     <Navbar
       fluid
       theme={{
-        base: 'sticky top-0 z-[60] bg-white dark:bg-gray-800 text-gray-500 dark:text-gray-400 border-b border-gray-200 dark:border-gray-700 flex items-center justify-between w-full mx-auto py-2.5 px-4',
-        inner: {
-          base: 'mx-auto flex flex-wrap justify-between items-center w-full',
+        root: {
+          base: 'sticky top-0 z-[60] bg-white dark:bg-gray-800 text-gray-500 dark:text-gray-400 border-b border-gray-200 dark:border-gray-700 flex items-center justify-between w-full mx-auto py-2.5 px-4',
+          inner: {
+            base: 'mx-auto flex flex-wrap justify-between items-center w-full',
+          },
         },
       }}
     >
@@ -93,9 +95,9 @@ const DocsNavbar: FC<DocsLayoutState> = ({ isCollapsed, setCollapsed }) => {
       </div>
     </Navbar>
   );
-};
+}
 
-const DocsSidebar: FC<DocsLayoutState> = ({ isCollapsed, setCollapsed }) => {
+function DocsSidebar({ isCollapsed, setCollapsed }: DocsLayoutState) {
   const pathname = usePathname();
 
   // collapse sidebar on small screens when navigating to a new page
@@ -114,7 +116,6 @@ const DocsSidebar: FC<DocsLayoutState> = ({ isCollapsed, setCollapsed }) => {
         )}
       >
         <Sidebar
-          collapsed={false}
           theme={{
             root: {
               base: 'h-full border-r border-gray-200 dark:border-gray-600',
@@ -330,6 +331,13 @@ const DocsSidebar: FC<DocsLayoutState> = ({ isCollapsed, setCollapsed }) => {
               </Accordion.Panel>
             </Accordion>
             <span className="h-64">&nbsp;</span>
+            {DOCS_SIDEBAR.map((section) => (
+              <SidebarSection key={section.title} title={section.title} href={section.href}>
+                {section.items.map((item) => (
+                  <SidebarItem key={`section-${section.title}_item-${item.title}`} {...item} />
+                ))}
+              </SidebarSection>
+            ))}
           </Sidebar.Items>
         </Sidebar>
       </div>
@@ -343,15 +351,53 @@ const DocsSidebar: FC<DocsLayoutState> = ({ isCollapsed, setCollapsed }) => {
       )}
     </>
   );
-};
+}
 
-const SidebarLink: FC<PropsWithChildren & { href: string }> = ({ children, href }) => {
+function SidebarSection({ title, href, children }: PropsWithChildren<{ title: string; href: string }>) {
+  const pathname = usePathname();
+
+  return (
+    <Accordion className="border-none" collapseAll={!pathname.includes(href)} flush>
+      <Accordion.Panel>
+        <Accordion.Title
+          theme={{
+            open: {
+              on: 'mb-2 text-primary-700 hover:text-primary-700 dark:text-primary-500 dark:hover:text-primary-500',
+              off: 'mb-1 text-gray-900 dark:text-white hover:text-primary-700 dark:hover:text-primary-500',
+            },
+          }}
+          className={twMerge(
+            'flex w-full items-center justify-between bg-transparent p-0 text-sm font-semibold uppercase tracking-wide',
+            pathname.includes(href) &&
+              'text-primary-700 hover:text-primary-700 dark:text-primary-500 dark:hover:text-primary-500',
+          )}
+        >
+          {title}
+        </Accordion.Title>
+        <Accordion.Content className="mb-2 border-none p-0">
+          <Sidebar.ItemGroup className="border-none">{children}</Sidebar.ItemGroup>
+        </Accordion.Content>
+      </Accordion.Panel>
+    </Accordion>
+  );
+}
+
+function SidebarItem({ title, href, isNew, isExternal }: DocsSidebarItem) {
+  return (
+    <SidebarLink href={href} isExternal={isExternal}>
+      {isNew ? <NewBadge>{title}</NewBadge> : title}
+    </SidebarLink>
+  );
+}
+
+function SidebarLink({ children, href, isExternal }: PropsWithChildren<{ href: string; isExternal?: boolean }>) {
   const pathname = usePathname();
 
   return (
     <Sidebar.Item
       as={Link}
       href={href}
+      target={isExternal && '_blank'}
       className={twMerge(
         'p-0 font-medium transition-all hover:bg-transparent dark:hover:bg-transparent lg:text-sm [&>*]:px-0',
         pathname === href
@@ -362,6 +408,15 @@ const SidebarLink: FC<PropsWithChildren & { href: string }> = ({ children, href 
       {children}
     </Sidebar.Item>
   );
-};
+}
 
-export default DocsLayout;
+function NewBadge({ children }: PropsWithChildren) {
+  return (
+    <span className="flex items-center gap-2">
+      {children}
+      <Badge color="cyan" className="h-4 px-1.5">
+        New
+      </Badge>
+    </span>
+  );
+}

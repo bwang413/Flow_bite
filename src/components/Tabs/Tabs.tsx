@@ -10,7 +10,7 @@ import type { FlowbiteBoolean } from '../Flowbite';
 import type { TabItemProps } from './TabItem';
 import { TabItem } from './TabItem';
 
-export interface FlowbiteTabTheme {
+export interface FlowbiteTabsTheme {
   base: string;
   tablist: {
     base: string;
@@ -54,10 +54,10 @@ interface TabKeyboardEventProps extends TabEventProps {
   event: KeyboardEvent<HTMLButtonElement>;
 }
 
-export interface TabsProps extends PropsWithChildren, Omit<ComponentProps<'div'>, 'ref' | 'style'> {
+export interface TabsProps extends Omit<ComponentProps<'div'>, 'ref' | 'style'> {
   onActiveTabChange?: (activeTab: number) => void;
   style?: keyof TabStyles;
-  theme?: DeepPartial<FlowbiteTabTheme>;
+  theme?: DeepPartial<FlowbiteTabsTheme>;
 }
 
 export interface TabsRef {
@@ -69,7 +69,7 @@ const TabsComponent = forwardRef<TabsRef, TabsProps>(
     { children, className, onActiveTabChange, style = 'default', theme: customTheme = {}, ...props },
     ref: ForwardedRef<TabsRef>,
   ) => {
-    const theme = mergeDeep(getTheme().tab, customTheme);
+    const theme = mergeDeep(getTheme().tabs, customTheme);
 
     const id = useId();
     const tabs = useMemo(

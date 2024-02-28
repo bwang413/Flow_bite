@@ -2,10 +2,10 @@
 
 import type { Placement } from '@floating-ui/core';
 import { autoUpdate, useFocus } from '@floating-ui/react';
-import type { ComponentProps, FC, PropsWithChildren, ReactNode } from 'react';
+import type { ComponentProps, FC, ReactNode } from 'react';
 import { useEffect, useRef, useState } from 'react';
 import { twMerge } from 'tailwind-merge';
-import { useBaseFLoating, useFloatingInteractions } from '../../helpers/use-floating';
+import { useBaseFLoating, useFloatingInteractions } from '../../hooks/use-floating';
 import { getArrowPlacement } from './helpers';
 
 export interface FlowbiteFloatingTheme {
@@ -34,7 +34,7 @@ export interface FlowbiteFloatingArrowTheme {
 
 export type FloatingStyle = 'dark' | 'light' | 'auto';
 
-export interface FloatingProps extends PropsWithChildren, Omit<ComponentProps<'div'>, 'content' | 'style'> {
+export interface FloatingProps extends Omit<ComponentProps<'div'>, 'content' | 'style'> {
   animation?: false | `duration-${number}`;
   arrow?: boolean;
   content: ReactNode;

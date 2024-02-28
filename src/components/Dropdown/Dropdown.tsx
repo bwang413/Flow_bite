@@ -8,17 +8,15 @@ import type {
   FC,
   HTMLProps,
   MutableRefObject,
-  PropsWithChildren,
   ReactElement,
   ReactNode,
-  RefCallback,
   SetStateAction,
 } from 'react';
 import { cloneElement, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { HiOutlineChevronDown, HiOutlineChevronLeft, HiOutlineChevronRight, HiOutlineChevronUp } from 'react-icons/hi';
 import { twMerge } from 'tailwind-merge';
 import { mergeDeep } from '../../helpers/merge-deep';
-import { useBaseFLoating, useFloatingInteractions } from '../../helpers/use-floating';
+import { useBaseFLoating, useFloatingInteractions } from '../../hooks/use-floating';
 import { getTheme } from '../../theme-store';
 import type { DeepPartial } from '../../types';
 import { Button, type ButtonProps } from '../Button';
@@ -42,10 +40,7 @@ export interface FlowbiteDropdownTheme {
   arrowIcon: string;
 }
 
-export interface DropdownProps
-  extends PropsWithChildren,
-    Pick<FloatingProps, 'placement' | 'trigger'>,
-    Omit<ButtonProps, 'theme'> {
+export interface DropdownProps extends Pick<FloatingProps, 'placement' | 'trigger'>, Omit<ButtonProps, 'theme'> {
   arrowIcon?: boolean;
   dismissOnClick?: boolean;
   floatingArrow?: boolean;
@@ -102,13 +97,7 @@ const Trigger = ({
       {children}
     </button>
   ) : (
-    <Button
-      {...buttonProps}
-      disabled={disabled}
-      type="button"
-      ref={refs.setReference as RefCallback<'button'>}
-      {...a11yProps}
-    >
+    <Button {...buttonProps} disabled={disabled} type="button" ref={refs.setReference} {...a11yProps}>
       {children}
     </Button>
   );
@@ -190,7 +179,7 @@ const DropdownComponent: FC<DropdownProps> = ({
   }, [placement]);
 
   return (
-    <>
+    <DropdownContext.Provider value={{ theme, activeIndex, dismissOnClick, getItemProps, handleSelect }}>
       <Trigger
         {...buttonProps}
         refs={refs}
@@ -205,43 +194,33 @@ const DropdownComponent: FC<DropdownProps> = ({
         {label}
         {arrowIcon && <Icon className={theme.arrowIcon} />}
       </Trigger>
-      <DropdownContext.Provider
-        value={{
-          theme,
-          activeIndex,
-          dismissOnClick,
-          getItemProps,
-          handleSelect,
-        }}
-      >
-        {open && (
-          <FloatingFocusManager context={context} modal={false}>
-            <div
-              ref={refs.setFloating}
-              style={{ ...floatingStyles, minWidth: buttonWidth }}
-              data-testid="flowbite-dropdown"
-              aria-expanded={open}
-              {...getFloatingProps({
-                className: twMerge(
-                  theme.floating.base,
-                  theme.floating.animation,
-                  'duration-100',
-                  !open && theme.floating.hidden,
-                  theme.floating.style.auto,
-                  className,
-                ),
-              })}
-            >
-              <FloatingList elementsRef={elementsRef} labelsRef={labelsRef}>
-                <ul className={theme.content} tabIndex={-1}>
-                  {children}
-                </ul>
-              </FloatingList>
-            </div>
-          </FloatingFocusManager>
-        )}
-      </DropdownContext.Provider>
-    </>
+      {open && (
+        <FloatingFocusManager context={context} modal={false}>
+          <div
+            ref={refs.setFloating}
+            style={{ ...floatingStyles, minWidth: buttonWidth }}
+            data-testid="flowbite-dropdown"
+            aria-expanded={open}
+            {...getFloatingProps({
+              className: twMerge(
+                theme.floating.base,
+                theme.floating.animation,
+                'duration-100',
+                !open && theme.floating.hidden,
+                theme.floating.style.auto,
+                className,
+              ),
+            })}
+          >
+            <FloatingList elementsRef={elementsRef} labelsRef={labelsRef}>
+              <ul className={theme.content} tabIndex={-1}>
+                {children}
+              </ul>
+            </FloatingList>
+          </div>
+        </FloatingFocusManager>
+      )}
+    </DropdownContext.Provider>
   );
 };
 

@@ -1,13 +1,16 @@
+import Image from 'next/image';
 import { type FC } from 'react';
 import { safeResJson } from '~/src/helpers/http';
 
-async function fetchSafe(endpoint: string): Promise<any> {
+async function fetchSafe<T>(endpoint: string): Promise<T> {
   return safeResJson(await fetch(endpoint));
 }
 
 async function fetchStargazers(): Promise<string> {
   try {
-    const result = await fetchSafe('https://api.github.com/repos/themesberg/flowbite-react');
+    const result = await fetchSafe<{ stargazers_count: string }>(
+      'https://api.github.com/repos/themesberg/flowbite-react',
+    );
 
     return result.stargazers_count;
   } catch (error) {
@@ -17,7 +20,9 @@ async function fetchStargazers(): Promise<string> {
 
 async function fetchNpmDownloads(): Promise<string> {
   try {
-    const result = await fetchSafe('https://api.npmjs.org/downloads/point/2021-01-01:2100-01-01/flowbite-react');
+    const result = await fetchSafe<{ downloads: string }>(
+      'https://api.npmjs.org/downloads/point/2021-01-01:2100-01-01/flowbite-react',
+    );
 
     return result.downloads;
   } catch (error) {
@@ -27,7 +32,7 @@ async function fetchNpmDownloads(): Promise<string> {
 
 async function fetchDiscordMembers(): Promise<string> {
   try {
-    const result = await fetchSafe(
+    const result = await fetchSafe<{ approximate_presence_count: string }>(
       'https://discord.com/api/v9/invites/4eeurUVvTy?with_counts=true&with_expiration=true',
     );
 
@@ -72,10 +77,12 @@ export const SocialProofSection: FC = async () => {
                 </p>
               </div>
               <div className="flex flex-row items-center gap-3.5 self-stretch">
-                <img
+                <Image
                   src="/images/feature-sections/eugene.jpg"
                   className="h-6 w-6 rounded-full bg-gray-100 text-gray-600 dark:bg-gray-600 dark:text-gray-300"
                   alt="Eugene Fedorenko Avatar"
+                  width={24}
+                  height={24}
                 />
                 <div className="flex items-center gap-3">
                   <span className="font-semibold leading-tight text-gray-900 dark:text-white">Eugene Fedorenko</span>
